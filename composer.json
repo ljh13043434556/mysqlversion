@@ -1,0 +1,17 @@
+{
+    "name": "beck/mysqlvs",
+    "description": "用于团队开发使不端的数据库DLL能同步",
+    "type": "l",
+    "authors": [
+        {
+            "name": "beck",
+            "email": "790928939@qq.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "beck\\mysqlvs\\": "src"
+        }
+    } 
+}
