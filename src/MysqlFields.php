@@ -24,11 +24,11 @@ class MysqlFields extends Unit
 
         foreach($result as $field)
         {
+
             if($field['Field'] == $name) {
                 return true;
             }
         }
-
         return false;
     }
 }

@@ -109,6 +109,7 @@ class MysqlVersion
             }
             else
             {
+                var_dump($result);
                 //未知道的错误
                 die($result['msg'] ?? '获取更新数据，未知道错误');
             }

@@ -103,13 +103,13 @@ class SqlCommand extends Unit
     public function getAlTerColumn()
     {
         $sql     = strtolower($this->sql);
-        preg_match("/^alter table (.*?) add (.*?) /", $sql, $matches);
-
+        preg_match("/^alter table (.*?) (add column|add) (.*?) /", $sql, $matches);
+       
         if(count($matches) < 3) {
             throw new \Exception('获取列失败');
         }
 
-        return [$this->trim($matches[1]), $this->trim($matches[2])];
+        return [$this->trim($matches[1]), $this->trim($matches[3])];
     }
 
 

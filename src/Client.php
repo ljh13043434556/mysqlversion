@@ -24,6 +24,7 @@ class Client extends Unit
 
     public function getList($id = 0)
     {
+
         $str = $this->generateRandomString(99);
 
         $result = $this->sendHttpRequest($this->url, null, [
