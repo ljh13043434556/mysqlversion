@@ -1,14 +1,14 @@
 <?php
-namespace mysqlversion;
+namespace beck\mysqlvs;
 
-use think\facade\Db;
 
 class MysqlFields extends Unit
 {
 
     public function getTableFields($table)
     {
-        $result = Db::query("SHOW COLUMNS FROM {$table};");
+
+        $result = $this->app->db->query("SHOW COLUMNS FROM {$table};");
         return $result;
     }
 
@@ -21,6 +21,7 @@ class MysqlFields extends Unit
     public function hasField($table, $name)
     {
         $result = $this->getTableFields($table);
+
         foreach($result as $field)
         {
             if($field['Field'] == $name) {

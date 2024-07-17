@@ -1,5 +1,5 @@
 <?php
-namespace mysqlversion;
+namespace beck\mysqlvs;
 
 use think\facade\Db;
 

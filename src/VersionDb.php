@@ -1,6 +1,6 @@
 <?php
 
-namespace mysqlversion;
+namespace beck\mysqlvs;
 
 
 class VersionDb extends Unit

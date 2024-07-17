@@ -1,5 +1,5 @@
 <?php
-namespace mysqlversion;
+namespace beck\mysqlvs;
 
 use think\facade\Db;
 
@@ -26,6 +26,7 @@ class SqlCommand extends Unit
             throw new \Exception('指令不能执行');
         }
 
+
         if($this->isCreateTable()) {
             //SQL 为创建 表格 ， 获取table
             $table = $this->getCreateSqlTable();
@@ -36,6 +37,7 @@ class SqlCommand extends Unit
         } else if($this->isAddColumn()) {
 
             [$table, $field] = $this->getAlTerColumn();
+
             if($this->app->field->hasField($table, $field)) {
                 //列表已经存在了
                 throw new \Exception('column exist');
@@ -85,9 +87,13 @@ class SqlCommand extends Unit
         if(count($matches) < 2) {
             throw new \Exception('获取表名失败');
         }
-        return $matches[1];
+        return $this->trim($matches[1]);
     }
 
+
+    protected function trim($str) {
+        return str_replace('`', '', $str);
+    }
 
     /**
      * 获取 alter 中的列名
@@ -103,7 +109,7 @@ class SqlCommand extends Unit
             throw new \Exception('获取列失败');
         }
 
-        return [$matches[1], $matches[2]];
+        return [$this->trim($matches[1]), $this->trim($matches[2])];
     }
 
 

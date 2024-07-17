@@ -1,6 +1,6 @@
 <?php
 
-namespace mysqlversion;
+namespace beck\mysqlvs;
 
 use think\facade\Db;
 
@@ -26,9 +26,11 @@ class MysqlVersion
     protected $unit = [
     ];
 
+    public $config = [];    //配置数据
 
-    public function __construct()
+    public function __construct($config = [])
     {
+        $this->config = $config;
         $this->init->init();
     }
 
@@ -76,6 +78,7 @@ class MysqlVersion
                             $item['result_note'] = 'ok';
                             $this->addLog($item);
                             $num++;
+
                         }catch (\Exception $e) {
                             $msg = $e->getMessage();
                             switch ($msg)
@@ -97,6 +100,7 @@ class MysqlVersion
                                     throw $e;
                             }
                         }
+
                     }
                 }catch (\Exception $e) {
                     var_dump("更新完成,更新{$num}条SQL");
@@ -116,8 +120,8 @@ class MysqlVersion
     protected function addLog($param) {
 
         $param['execute_time'] = date('Y-m-d H:i:s');
-        $sql = "insert into ljh_mysql_version_control(id,content,note,author,create_time,execute_result,result_note)
- values (\"{$param['id']}\",\"{$param['id']}\",\"{$param['content']}\",\"{$param['author']}\",\"{$param['create_time']}\",\"{$param['execute_result']}\",\"{$param['result_note']}\")";
+        $sql = "insert into ljh_mysql_version_control(id,content,note,author,create_time,execute_result,result_note,execute_time)
+ values (\"{$param['id']}\",\"{$param['content']}\",\"{$param['note']}\",\"{$param['author']}\",\"{$param['create_time']}\",\"{$param['execute_result']}\",\"{$param['result_note']}\",\"{$param['execute_time']}\")";
 
         $this->db->execute($sql);
     }

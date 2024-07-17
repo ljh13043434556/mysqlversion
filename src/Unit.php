@@ -1,8 +1,6 @@
 <?php
 
-namespace mysqlversion;
-
-use think\facade\Db;
+namespace beck\mysqlvs;
 
 class Unit
 {
